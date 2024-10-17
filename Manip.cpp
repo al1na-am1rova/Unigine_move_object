@@ -46,7 +46,7 @@ ObjectPtr Manip::getIntersection() {
 	if (IntersectionObject) {
 		delta_vec = wi->getPoint() - from;
 		delta = Math::length(delta_vec);
-		delta_coord = wi->getPoint() - IntersectionObject->getPosition();
+		delta_coord = wi->getPoint() - IntersectionObject->getWorldPosition();
 
 		lastSelected = IntersectionObject;
 		lastSelectedColor = IntersectionObject->getMaterial(0)->getParameterFloat4("albedo_color");
@@ -75,7 +75,7 @@ void Manip::HoldIt(ObjectPtr object) {
 	Log::message("HoldIt");
 	std::cout << object->getName() << std::endl;
 	//object->setTransform((mat4)rotate(delta_rot * player->getTransform().getRotate()));
-	object->setPosition(player->getCamera()->getPosition() + player->getViewDirection() * delta - delta_coord);
+	object->setWorldPosition(player->getCamera()->getPosition() + player->getViewDirection() * delta - delta_coord);
 }
 
 void Manip::ThrowIt(ObjectPtr object) {

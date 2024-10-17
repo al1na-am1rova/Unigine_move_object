@@ -15,7 +15,8 @@ public:
 	PROP_PARAM(Node, triggerNode)
 
 private:
-	bool in = false;
+	enum class ObjectStatus { out, connection, moving};
+	ObjectStatus status;
 	WorldTriggerPtr trigger;
 	PlayerPtr player = Game::getPlayer();
 	void trigger_enter(const NodePtr& node);
